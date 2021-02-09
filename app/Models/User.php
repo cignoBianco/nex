@@ -23,6 +23,37 @@ class User extends Authenticatable
         'password',
     ];
 
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function subscribers()
+    {
+        return $this->morphToMany(User::class, 'followables');
+    }
+
+    public function subscribing()
+    {
+        return $this->morphedByMany(User::class, 'followables');
+    }
+
+    public function isBlocked()
+    {
+        return $this->belongsToMany(Blacklist::class, 'blocked_id');
+    }
+
+    public function blocked()
+    {
+        return $this->belongsToMany(Blacklist::class, 'user_id');
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *

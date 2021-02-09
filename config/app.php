@@ -177,6 +177,10 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+
+        // And uncomment BroadcastServiceProvider
+        App\Providers\BroadcastServiceProvider::class,
+
     ],
 
     /*
@@ -229,6 +233,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        'Centrifugo'=> SKONIKS\Centrifugo\Centrifugo::class,
     ],
 
 ];

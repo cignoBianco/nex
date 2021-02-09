@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PassportAuthController;
 use App\Http\Controllers\PostController;
@@ -28,8 +29,9 @@ Route::middleware('auth:api')->group(function () {
     Route::delete('/users/{id}', [HomeController::class, 'destroy']);
 
     Route::get('/posts/all/', [PostController::class, 'getAllPosts']);
+    Route::get('/comments/all/', [CommentController::class, 'getAllPosts']);
     Route::resource('posts', PostController::class);
-    Route::resource('comments', PostController::class);
-    Route::resource('blacklists', PostController::class);
-    Route::resource('subscribers', PostController::class);
+    Route::resource('comments', CommentController::class);
+    Route::resource('blacklists', \App\Http\Controllers\SubscribersController::class);
+    Route::resource('subscribers', \App\Http\Controllers\BlacklistsController::class);
 });

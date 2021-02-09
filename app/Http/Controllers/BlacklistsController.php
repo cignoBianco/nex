@@ -11,32 +11,73 @@ class BlacklistsController extends BaseController
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
-        //
+        $blockedUsers = auth()->user()->blocked;
+
+        return response()->json([
+            'success' => true,
+            'data' => $blockedUsers
+        ]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $this->validate($request, [
+            'blocked_id' => 'required',
+            'user_id' => 'required'
+        ]);
+
+        $blockedUser = new Blacklist();
+        $blockedUser->blocked_id = $request->blocked_id;
+        $blockedUser->user_id = auth()->user();
+
+        if (auth()->user()->blocked()->save($blockedUser))
+            return response()->json([
+                'success' => true,
+                'data' => $blockedUser->toArray()
+            ], 500);
+        else
+            return response()->json([
+                'success' => false,
+                'message' => "This user wasn't add to blacklist"
+            ], 501);
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'blocked_id' => 'required',
+            'user_id' => 'required'
+        ]);
+
+        $blockedUser = new Blacklist();
+        $blockedUser->blocked_id = $request->blocked_id;
+        $blockedUser->user_id = auth()->user();
+
+        if (auth()->user()->blocked()->save($blockedUser))
+            return response()->json([
+                'success' => true,
+                'data' => $blockedUser->toArray()
+            ], 500);
+        else
+            return response()->json([
+                'success' => false,
+                'message' => "This user wasn't add to blacklist"
+            ], 501);
     }
 
     /**
@@ -45,9 +86,10 @@ class BlacklistsController extends BaseController
      * @param  \App\Models\Blacklist  $blacklist
      * @return \Illuminate\Http\Response
      */
-    public function show(Blacklist $blacklist)
+    public function show($id)
     {
-        //
+        $currentUser = auth()->user();
+        $blockedUsers =
     }
 
     /**
