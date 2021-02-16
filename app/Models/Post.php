@@ -5,6 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Post
+ * @package App\Models
+ * subject
+ * body
+ * user_id
+ * timestamps
+ */
 class Post extends Model
 {
     use HasFactory;

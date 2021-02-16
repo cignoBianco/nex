@@ -18,6 +18,9 @@ class CreateOauthAccessTokensTable extends Migration
      *
      * @return void
      */
+    /**
+     * CreateOauthAccessTokensTable constructor.
+     */
     public function __construct()
     {
         $this->schema = Schema::connection($this->getConnection());
