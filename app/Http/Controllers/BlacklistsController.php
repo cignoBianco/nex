@@ -40,15 +40,19 @@ class BlacklistsController extends BaseController
         $blockedUser->user_id = auth()->user();
 
         if (auth()->user()->blocked()->save($blockedUser))
+        {
             return response()->json([
                 'success' => true,
                 'data' => $blockedUser->toArray()
             ], 500);
+        }
         else
+        {
             return response()->json([
                 'success' => false,
                 'message' => "This user wasn't add to blacklist"
             ], 501);
+        }
     }
 
     /**
@@ -69,15 +73,19 @@ class BlacklistsController extends BaseController
         $blockedUser->user_id = auth()->user();
 
         if (auth()->user()->blocked()->save($blockedUser))
+        {
             return response()->json([
                 'success' => true,
                 'data' => $blockedUser->toArray()
             ], 500);
+        }
         else
+        {
             return response()->json([
                 'success' => false,
                 'message' => "This user wasn't add to blacklist"
             ], 501);
+        }
     }
 
     /**

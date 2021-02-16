@@ -82,15 +82,19 @@ class CommentController extends BaseController
         $comment->post_id = $request->post_id;
 
         if (auth()->user()->comments()->save($comment))
+        {
             return response()->json([
                 'success' => true,
                 'data' => $comment->toArray()
             ]);
+        }
         else
+        {
             return response()->json([
                 'success' => false,
                 'message' => 'Comment not added'
             ], 500);
+        }
     }
 
     /**
@@ -111,15 +115,19 @@ class CommentController extends BaseController
         $comment->post_id = $request->post_id;
 
         if (auth()->user()->comments()->save($comment))
+        {
             return response()->json([
                 'success' => true,
                 'data' => $comment->toArray()
             ]);
+        }
         else
+        {
             return response()->json([
                 'success' => false,
                 'message' => 'Comment not added'
             ], 500);
+        }
     }
 
     /**
@@ -165,14 +173,17 @@ class CommentController extends BaseController
         $updated = $comment->fill($request->all())->save();
 
         if ($updated)
+        {
             return response()->json([
                 'success' => true
             ]);
-        else
+        }
+        else {
             return response()->json([
                 'success' => false,
                 'message' => 'Comment can not be updated'
             ], 500);
+        }
     }
 
 

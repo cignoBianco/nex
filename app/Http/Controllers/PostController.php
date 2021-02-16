@@ -50,16 +50,19 @@ class PostController extends BaseController
         $post->body = $request->body;
 
         if (auth()->user()->posts()->save($post))
+        {
             return response()->json([
                 'success' => true,
                 'data' => $post->toArray()
             ]);
+        }
         else
+        {
             return response()->json([
                 'success' => false,
                 'message' => 'Post not added'
             ], 500);
-        //return view('posts.create');
+        }
     }
 
     /**
@@ -132,15 +135,17 @@ class PostController extends BaseController
 
         $updated = $post->fill($request->all())->save();
 
-        if ($updated)
+        if ($updated) {
             return response()->json([
                 'success' => true
             ]);
-        else
+        }
+        else {
             return response()->json([
                 'success' => false,
                 'message' => 'Post can not be updated'
             ], 500);
+        }
     }
 
     /**
