@@ -15,7 +15,7 @@ class PostController extends BaseController
      */
     public function index()
     {
-        $posts = auth()->user()->posts;
+        $posts = auth()->user()->posts();
 
         return response()->json([
             'success' => true,
@@ -87,16 +87,6 @@ class PostController extends BaseController
             'id' => auth()->user()
         ]);
 
-        if (auth()->user()->posts()->save($post))
-            return response()->json([
-                'success' => true,
-                'data' => $post->toArray()
-            ]);
-        else
-            return response()->json([
-                'success' => false,
-                'message' => 'Post not added'
-            ], 500);
     }
 
     /**
