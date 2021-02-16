@@ -15,8 +15,8 @@ class CreateBlacklistsTable extends Migration
     {
         Schema::create('blacklists', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->unsigned();
-            $table->bigInteger('blocked_user_id')->unsigned();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('blocked_user_id');
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('blocked_user_id')->references('id')->on('users');
