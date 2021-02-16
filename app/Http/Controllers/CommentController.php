@@ -161,6 +161,11 @@ class CommentController extends BaseController
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'body' => 'required',
+            'post_id' => 'required'
+        ]);
+
         $comment = auth()->user()->comments()->find($id);
 
         if (!$comment) {

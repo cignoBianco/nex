@@ -124,6 +124,11 @@ class PostController extends BaseController
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'subject' => 'required',
+            'body' => 'required'
+        ]);
+
         $post = auth()->user()->posts()->find($id);
 
         if (!$post) {
