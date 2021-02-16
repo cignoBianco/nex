@@ -28,7 +28,7 @@ class PostController extends BaseController
         $posts = Post::all();//::latest()->paginate(50);
 
         return response()->json([
-            'status' => 'ok',
+            'success' => true,
             'posts' => $posts,
         ]);
     }
